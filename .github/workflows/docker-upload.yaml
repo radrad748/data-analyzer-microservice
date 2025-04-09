@@ -21,7 +21,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           image: ${{ secrets.DOCKERHUB_USERNAME }}/data-analyser-microservice
-          tags: 0.0.$GITHUB_RUN_NUMBER, latest
+          tags: 0.0.${{ github.run_number }}, latest
           dockerfile: Dockerfile
           push: true
           registry: docker.io
