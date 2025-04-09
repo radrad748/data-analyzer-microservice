@@ -18,10 +18,12 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
       - name: Build and Push to Docker Hub
+        uses: docker/build-push-action@v2
         with:
           image: ${{ secrets.DOCKERHUB_USERNAME }}/data-analyser-microservice
           tags: 0.0.$GITHUB_RUN_NUMBER, latest
           dockerfile: Dockerfile
+          push: true
           registry: docker.io
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
