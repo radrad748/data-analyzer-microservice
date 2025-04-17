@@ -5,7 +5,7 @@ WORKDIR /app
 COPY pom.xml .
 COPY src ./src
 #RUN mvn -f /pom.xml clean package
-RUN mvn clean package
+RUN mvn clean package -X
 
 FROM openjdk:17-jdk-slim
 COPY --from=build /app/target/*.jar app.jar
