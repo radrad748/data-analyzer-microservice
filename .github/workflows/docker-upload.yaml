@@ -22,6 +22,8 @@ jobs:
         with:
           image: ${{ secrets.DOCKERHUB_USERNAME }}/data-analyser-microservice
           tags: 0.0.${{ github.run_number }}, latest
+          build-args: |
+            ENV_FILE=.env
           dockerfile: Dockerfile
           push: true
           registry: docker.io
