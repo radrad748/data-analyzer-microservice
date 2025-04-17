@@ -35,6 +35,8 @@ services:
       - kafka
     env_file:
       - .env
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
     ports:
       - '8082:8082'
 

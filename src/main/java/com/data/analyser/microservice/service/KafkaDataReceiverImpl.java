@@ -6,6 +6,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import reactor.kafka.receiver.KafkaReceiver;
 
@@ -19,9 +20,15 @@ public class KafkaDataReceiverImpl implements KafkaDataReceiver {
     private final LocalDateTimeDeserializer ldtDeserializer;
     private final KafkaDataService kafkaDataService;
 
+    @Value("${spring.profiles.active}")
+    private String activeProfile;
+
     @PostConstruct
     private void init() {
-        fetch();
+
+        if("prod".equals(activeProfile))
+            fetch();
+
     }
 
 
