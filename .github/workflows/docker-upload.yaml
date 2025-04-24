@@ -20,12 +20,15 @@ jobs:
       - name: Build and Push to Docker Hub
         uses: docker/build-push-action@v2
         with:
-          image: ${{ secrets.DOCKERHUB_USERNAME }}/data-analyser-microservice
-          tags: 0.0.${{ github.run_number }}, latest
+          #image: ${{ secrets.DOCKERHUB_USERNAME }}/data-analyser-microservice
+          #tags: 0.0.${{ github.run_number }}, latest
+          context: .
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/data-analyser-microservice:0.0.${{ github.run_number }},${{ secrets.DOCKERHUB_USERNAME }}/data-analyser-microservice:latest
           build-args: |
             ENV_FILE=.env
           dockerfile: Dockerfile
-          push: true
-          registry: docker.io
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          #push: true
+          #registry: docker.io
+          #username: ${{ secrets.DOCKERHUB_USERNAME }}
+          #password: ${{ secrets.DOCKERHUB_TOKEN }}
