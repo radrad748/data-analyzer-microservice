@@ -1,0 +1,22 @@
+spring:
+  config:
+    activate:
+      on-profile: dev
+    import: optional:file:.env[.properties]
+  datasource:
+    url: jdbc:h2:mem:testdb
+    username: sa
+    password: password
+    driver-class-name: org.h2.Driver
+  jpa:
+    hibernate:
+      ddl-auto: none
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS}
+  liquibase:
+    change-log: classpath:liquibase/db.changelog.yaml
+    enabled: false
+server:
+  port: 8082
+
+topics: ${KAFKA_SUBSCRIBED_TOPICS}
