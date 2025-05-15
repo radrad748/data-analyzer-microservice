@@ -1,9 +1,7 @@
-#36.45
-
 #подтягиваем файл из проекта или .env или .properties
 
 spring:
   profiles:
-    active: dev
+    active: ${SPRING_PROFILES_ACTIVE}
 
 
